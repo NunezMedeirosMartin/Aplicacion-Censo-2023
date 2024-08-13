@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Censo 2023 Uruguay</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="icon" href="img/icon.ico">
+</head>
+
+<body>
+    <div id="contenedor"> <!-- Contenedor general de todo el html -->
+
+        <div id="cabezal" class="clearfix"> <!-- Contenedor de header con ambos perfiles (censado y censista)-->
+            <img id="logo" src="img/logoCenso2.png" alt="logo">
+            <ul id="navPrincipal">
+                <li id="btnSeccionInicio" class="btn inicio censista censado">
+                    <a>Inicio</a>
+                </li>
+                <li id="btnSeccionCensista" class="btn censista">
+                    <a>Censista</a>
+                </li>
+                <li id="btnSeccionCensado" class="btn censado">
+                    <a>Invitado</a>
+                </li>
+                <li id="btnSeccionContacto" class="btn inicio censista censado">
+                    <a>Contacto</a>
+                </li>
+            </ul>
+            
+        </div><!-- Fin contenedor header -->
+
+        <div id="seccionInicio" class="seccion">
+            <h1>Bienvenidos a la aplicación de Censo Uruguay</h1>
+            <p>Un censo es una herramienta esencial utilizada para recopilar información demográfica y socioeconómica de una población en un momento determinado. Su propósito principal es obtener datos actualizados sobre el tamaño de la población, su composición demográfica y características socioeconómicas. </p>
+            <hr>
+            <p>En la siguiente parte, se le solicitará que elija su perfil de usuario a través de un menú desplegable. Le ofrecemos dos opciones: puede seleccionar entre el perfil de "Censista" o "Censado" según su rol y función en la aplicación. Se abrirá una opción en la página arriba a la derecha según lo elegido.</p>
+            <label for="slcElegirPerfil">Elegir perfil:</label>
+            <select id="slcElegirPerfil">
+                <option value="">Seleccione...</option>
+                <option value="ca">Censista</option>
+                <option value="co">Invitado</option>
+            </select>
+            <input type="button" id="btnElegirPerfil" value="Elegir">
+        </div>
+
+        <div id="seccionCensista" class="seccion"><!-- Contenedor general censista (censista)-->
+            <h1>Censista</h1>
+            <div id="inicioSesionCensista"> <!-- Contenedor inicio de sesion para censista (censista)-->
+                <div><!-- Contenedor registro de aplicacion para censista (censista)-->
+                    <h3> Registrarse en la aplicación</h3>
+                    <p>Para registrarse como nuevo usuario rellene los siguientes campos.</p>
+                    <label for="txtNombre">Nombre:</label>
+                    <input type="text" id="txtNombre">
+                    <br>
+                    <label for="txtApellido">Apellido:</label>
+                    <input type="text" id="txtApellido">
+                    <br>
+                    <label for="txtUsuarioRegistro">Usuario de sesión:</label>
+                    <input type="text" id="txtUsuarioRegistro">
+                    <br>
+                    <label for="txtPasswordRegistro">Contraseña:</label>
+                    <input type="text" id="txtPasswordRegistro">
+                    <p>*La contraseña debe tener un mínimo de 5 caracteres (una mayúscula, una minúscula y un número). Todos los campos son obligatorios.</p>
+                    <p id="pErrorContraseña"></p>
+                    <input type="button" id="btnRegistrar" value="Registrar">
+                    
+                </div><!-- Fin contenedor registro de aplicacion para censista -->
+
+                <div><!-- Contenedor ingreso a la aplicacion para censista (censista)-->
+                    <h3> Iniciar sesion en la aplicación</h3>
+                    <p>Si ya esta registrado ingrese su usuario de sesión y contraseña.</p>
+                    <label for="txtUsuarioIngreso">Usuario de sesión:</label>
+                    <input type="text" id="txtUsuarioIngreso">
+                    <br>
+                    <label for="txtPasswordIngreso">Contraseña:</label>
+                    <input type="password" id="txtPasswordIngreso">
+                    <br>
+                    <input type="button" id="btnIngresar" value="Ingresar">
+                    <p id="pIngreso"></p>
+                </div><!-- Fin contenedor ingreso a la aplicacion para censista -->
+            </div>
+
+            <hr>
+
+            <div id="funcionalidadesCensista" style="display: none;"> <!-- Contenedor para funcionalidades censista aparte de las de inicio de sesion (censista)-->
+                <div id="reasignarCenso"> <!-- Contenedor para reasignar censos pendientes a otro censista (censista)-->
+                    <h3>Buscar y reasignar censo</h3>
+                    <p>Actualice la lista y sus censos correspondientes pendientes de validar. Si desea reasignar su censo a otro censista haga la reasignación.</p>
+                    <label for="slcPendientesReasignarCenso">Censos pendientes:</label>
+                    <select id="slcReasignarCenso">
+                        <option value="">Personas</option>
+                    </select>
+                    <br>
+                    <label for="slcCensistasReasignarCenso">Reasignar censista:</label>
+                    <select id="slcCensistasReasignarCenso">
+                        <option value="">Censistas</option>
+                    </select>
+                    <br>
+                    <input type="button" value="Actualizar lista" id="btnActualizar">
+                    <input type="button" value="Reasignar censo" id="btnReasignar">
+                    <p id="errorReasignar"></p>
+                </div> <!-- Fin contenedor para reasignar censos pendientes a otro censista -->
+  
+
+                <hr>
+
+                <div id="consultarCenso"> <!-- Contenedor para consultar censos precompletados (censista)-->
+                    <h3>Consultar censo pre completado</h3>
+                    <label for="txtCedulaConsultarCenso">Cedula:</label>
+                    <input type="text" id="txtCedulaConsultarCenso">
+                    <br>
+                    <input type="button" value="Consultrar censo" id="btnConsultarCenso">
+                    <p id="pResultadoConsultarCenso"></p>
+                    <br>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Edad</th>
+                                <th>Cedula</th>
+                                <th>Departamento</th>
+                                <th>Ocupacion</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tBody">
+                           
+                                
+                          
+                        </tbody>
+                    </table>
+                    <input type="button" id="btnCensoIncompleto" value="Modificar o validar censo">
+                </div> <!-- Fin contenedor para consultar censos precompletados-->
+
+                <hr>
+                <div> <!--Contenedor para ingresar datos de una persona censada (censista)-->
+                    <h3>Ingresar datos de una persona censada</h3>
+                    <label for="txtNombreIngresarCenso">Nombre:</label>
+                    <input type="text" id="txtNombreIngresarCenso">
+                    <br>
+                    <label for="txtApellidoIngresarCenso">Apellido:</label>
+                    <input type="text" id="txtApellidoIngresarCenso">
+                    <br>
+                    <label for="txtEdadIngresarCenso">Edad:</label>
+                    <input type="number" id="txtEdadIngresarCenso">
+                    <br>
+                    <label for="txtCedulaIngresarCenso">Cédula:</label>
+                    <input type="text" id="txtCedulaIngresarCenso">
+                    <br>
+                    <label for="slcDepartamentoIngresarCenso">Departamento:</label>
+                    <select id="slcDepartamentoIngresarCenso">
+                        <option value="">Seleccione...</option>
+                        <option value="ARTIGAS">ARTIGAS</option>
+                        <option value="CANELONES">CANELONES</option>
+                        <option value="CERRO LARGO">CERRO LARGO</option>
+                        <option value="COLONIA">COLONIA</option>
+                        <option value="DURAZNO">DURAZNO</option>
+                        <option value="FLORES">FLORES</option>
+                        <option value="FLORIDA">FLORIDA</option>
+                        <option value="LAVALLEJA">LAVALLEJA</option>
+                        <option value="MALDONADO">MALDONADO</option>
+                        <option value="MONTEVIDEO">MONTEVIDEO</option>
+                        <option value="PAYSANDU">PAYSANDU</option>
+                        <option value="RIO NEGRO">RIO NEGRO</option>
+                        <option value="RIVERA">RIVERA</option>
+                        <option value="ROCHA">ROCHA</option>
+                        <option value="SALTO">SALTO</option>
+                        <option value="SAN JOSE">SAN JOSE</option>
+                        <option value="SORIANO">SORIANO</option>
+                        <option value="TACUAREMBO">TACUAREMBO</option>
+                        <option value="TREINTA Y TRES">TREINTA Y TRES</option>
+                </select>
+                    <br>
+                    <label for="slcOcupacionIngresarCenso">Ocupación:</label>
+                    <select id="slcOcupacionIngresarCenso">
+                        <option value="">Seleccione...</option>
+                    <option value="DEPENDIENTE">DEPENDIENTE</option>
+                    <option value="INDEPENDIENTE">INDEPENDIENTE</option>
+                    <option value="ESTUDIANTE">ESTUDIANTE</option>
+                    <option value="NO TRABAJA">NO TRABAJA</option>
+                    </select>
+                    <br>
+                
+                    <input type="button" value="Ingresar datos censo" id="btnIngresarDatosCenso">
+                    <br>
+                    <p id="pErrorCedula"></p>
+                    <p id="pAsignado"></p>
+                </div><!--Fin contenedor para ingresar datos de una persona censada-->
+                
+                <hr>
+
+                <div id="estadistica"> <!-- Consultar informacion estadistica (censista)-->
+                    <h3>Consultar información estadística</h3>
+                    <p>Mostrar total de personas censadas hasta el momento.</p>  <!-- hecho-->
+                    <input type="button" id="btnConsultarTotalCensados" value="Consultar">
+                    <table>
+                        <thead>
+                            <th>Total de personas censadas hasta el momento</th>
+                        </thead>
+                        <tbody id="tResultadoTotalCensados">
+                    
+                        </tbody>
+                    </table>
+                    
+                    <br>
+                    
+                    <p>Mostrar total de personas censadas hasta el momento para cada departamento.</p>
+                    <label for="slcTotalCensadosDepartamento">Departamento:</label>
+                    <select id="slcTotalCensadosDepartamento">
+                        <option value="">Seleccione...</option>
+                        <option value="ARTIGAS">ARTIGAS</option>
+                        <option value="CANELONES">CANELONES</option>
+                        <option value="CERRO LARGO">CERRO LARGO</option>
+                        <option value="COLONIA">COLONIA</option>
+                        <option value="DURAZNO">DURAZNO</option>
+                        <option value="FLORES">FLORES</option>
+                        <option value="FLORIDA">FLORIDA</option>
+                        <option value="LAVALLEJA">LAVALLEJA</option>
+                        <option value="MALDONADO">MALDONADO</option>
+                        <option value="MONTEVIDEO">MONTEVIDEO</option>
+                        <option value="PAYSANDU">PAYSANDU</option>
+                        <option value="RIO NEGRO">RIO NEGRO</option>
+                        <option value="RIVERA">RIVERA</option>
+                        <option value="ROCHA">ROCHA</option>
+                        <option value="SALTO">SALTO</option>
+                        <option value="SAN JOSE">SAN JOSE</option>
+                        <option value="SORIANO">SORIANO</option>
+                        <option value="TACUAREMBO">TACUAREMBO</option>
+                        <option value="TREINTA Y TRES">TREINTA Y TRES</option>
+                    </select>
+                    <br>
+                    <input type="button" id="btnConsultarCensadosDepartamentos" value="Consultar">
+                    <br>
+                    <table>
+                        <thead>
+                            <th>Total de personas censadas en el departamento seleccionado</th>
+                        </thead>
+                    
+                        <tbody id="tBodyEstadisticaDepartamento">
+                    
+                        </tbody>
+                    </table>
+                    
+                    <br>
+                    
+                    <p>Mostrar total de personas aun pendientes de validar.</p>
+                    <input type="button" id="btnConsultarCensosPendientes" value="Consultar">
+                    <table>
+                        <thead>
+                            <th>Total censos pendientes por validar</th>
+                        </thead>
+                    
+                        <tbody id="tCensosPendientes">
+                    
+                        </tbody>
+                    </table>
+                    <br>
+                    
+                    <p>Mostrar el porcentaje de personas censadas menores de edad y el porcentaje de mayores de edad.</p>  <!-- hecho-->
+                    <label for="slcDepartamentoEstadistica">Departamento:</label>
+                    <select id="slcDepartamentoEstadistica">
+                        <option value="">Seleccione...</option>
+                        <option value="ARTIGAS">ARTIGAS</option>
+                        <option value="CANELONES">CANELONES</option>
+                        <option value="CERRO LARGO">CERRO LARGO</option>
+                        <option value="COLONIA">COLONIA</option>
+                        <option value="DURAZNO">DURAZNO</option>
+                        <option value="FLORES">FLORES</option>
+                        <option value="FLORIDA">FLORIDA</option>
+                        <option value="LAVALLEJA">LAVALLEJA</option>
+                        <option value="MALDONADO">MALDONADO</option>
+                        <option value="MONTEVIDEO">MONTEVIDEO</option>
+                        <option value="PAYSANDU">PAYSANDU</option>
+                        <option value="RIO NEGRO">RIO NEGRO</option>
+                        <option value="RIVERA">RIVERA</option>
+                        <option value="ROCHA">ROCHA</option>
+                        <option value="SALTO">SALTO</option>
+                        <option value="SAN JOSE">SAN JOSE</option>
+                        <option value="SORIANO">SORIANO</option>
+                        <option value="TACUAREMBO">TACUAREMBO</option>
+                        <option value="TREINTA Y TRES">TREINTA Y TRES</option>
+                    </select>
+                    <br>
+                    <input type="button" id="btnConsultarInformacion" value="Consultar">
+                    <table>
+                        <thead>
+                            <th>Total de personas censadas hasta el momento</th>
+                        </thead>
+                        <tbody id="tResultadoEstadisticaCenso">
+                    
+                        </tbody>
+                    </table>
+                    </div><!-- Fin contenedor para consultar informacion estadistica-->
+            </div> <!-- Fin contenedor funcionalidades censista -->
+        </div><!-- Fin contenedor general censista-->
+
+        <div id="seccionCensado" class="seccion"><!-- Contenedor general de censado (censado)-->
+            <h1>Invitado</h1>
+            <div> <!-- Contenedor para ingresar datos para censar (censado)-->
+                <h3>Buscar censo pre completado</h3>
+                <p>Ingrese su cedula para cargar los datos de su censo pre completado anteriormente</p>
+                <label for="txtBuscarMiCenso">Cédula:</label>
+                <input type="text" id="txtBuscarMiCenso">
+                <input type="button" value="Buscar" id="btnBuscarMiCenso"><br>
+                <p id="pMensajeCedula"></p>
+                <h3>Ingresar datos para censar</h3>
+                <label for="txtNombreIngresarCensoCensado">Nombre:</label>
+                <input type="text" id="txtNombreIngresarCensoCensado">
+                <br>
+                <label for="txtApellidoIngresarCensoCensado">Apellido:</label>
+                <input type="text" id="txtApellidoIngresarCensoCensado">
+                <br>
+                <label for="txtEdadIngresarCensoCensado">Edad:</label>
+                <input type="number" id="txtEdadIngresarCensoCensado">
+                <br>
+                <label for="txtCedulaIngresarCensoCensado">Cédula:</label>
+                <input type="text" id="txtCedulaIngresarCensoCensado">
+                <br>
+                <label for="slcDepartamentoIngresarCensoCensado">Departamento:</label>
+                <select id="slcDepartamentoIngresarCensoCensado">
+                    <option value="">Seleccione...</option>
+                        <option value="ARTIGAS">ARTIGAS</option>
+                        <option value="CANELONES">CANELONES</option>
+                        <option value="CERRO LARGO">CERRO LARGO</option>
+                        <option value="COLONIA">COLONIA</option>
+                        <option value="DURAZNO">DURAZNO</option>
+                        <option value="FLORES">FLORES</option>
+                        <option value="FLORIDA">FLORIDA</option>
+                        <option value="LAVALLEJA">LAVALLEJA</option>
+                        <option value="MALDONADO">MALDONADO</option>
+                        <option value="MONTEVIDEO">MONTEVIDEO</option>
+                        <option value="PAYSANDU">PAYSANDU</option>
+                        <option value="RIO NEGRO">RIO NEGRO</option>
+                        <option value="RIVERA">RIVERA</option>
+                        <option value="ROCHA">ROCHA</option>
+                        <option value="SALTO">SALTO</option>
+                        <option value="SAN JOSE">SAN JOSE</option>
+                        <option value="SORIANO">SORIANO</option>
+                        <option value="TACUAREMBO">TACUAREMBO</option>
+                        <option value="TREINTA Y TRES">TREINTA Y TRES</option>
+                </select>
+                <br>
+                <label for="slcOcupacionIngresarCensoCensado">Ocupacion:</label>
+                <select id="slcOcupacionIngresarCensoCensado">
+                    <option value="">Seleccione...</option>
+                    <option value="DEPENDIENTE">DEPENDIENTE</option>
+                    <option value="INDEPENDIENTE">INDEPENDIENTE</option>
+                    <option value="ESTUDIANTE">ESTUDIANTE</option>
+                    <option value="NO TRABAJA">NO TRABAJA</option>
+                </select>
+                <br>
+                <input type="button" value="Ingresar censo" id="btnIngresarPreCensoCensado">
+                <br>
+                <p id="pErrorCedulaCensado"></p>
+            </div> <!-- Fin contenedor para ingresar datos para censar-->
+
+            <hr>
+
+            <div> <!-- Contenedor para  eliminar censo (censado)-->
+                <h3>Eliminar censo</h3>
+                <p>Si sus datos aun no han sido validados por un censista puede eliminar su censo.</p> 
+                <label for="txtBuscarMiCensoEliminar">Cédula:</label>
+                <input type="text" id="txtBuscarMiCensoEliminar">
+                <input type="button" value="Buscar" id="btnBuscarMiCensoEliminar"><br>
+                <p id="pErrorCedulaCensadoEliminar"></p>
+                <p>Si está seguro que desea eliminarlo presione el boton.</p>
+                <input type="button" value="Eliminar censo" id="btnEliminarCenso"><br>
+                <p id="pErrorCedulaCensadoEliminar2"></p>
+            </div> <!-- Fin contenedor para  eliminar censo -->
+
+            <hr>
+
+            <div> <!-- Contenedor para  mostrar lista de censos (censado)-->
+                <h3>Lista de censados</h3>
+                <p>Se mostrara una estadistica de los censos ya validados y de los censos aun pendientes de validar.</p>
+                <input type="button" id="btnMostrarEstadisticaCensados" value="Mostrar estadistica censados validados">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Departamento</th>
+                            <th>Estudian</th>
+                            <th>No trabajan</th>
+                            <th>Independientes o dependiente</th>
+                            <th>Porcentaje total de censados</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tBodyEstadisticaCensados">
+                       
+                            
+                      
+                    </tbody>
+                </table>
+                <br>
+                <input type="button" id="btnMostrarEstadistica" value="Mostrar estadistica censados sin validar">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Departamento</th>
+                            <th>Estudian</th>
+                            <th>No trabajan</th>
+                            <th>Independientes o dependiente</th>
+                            <th>Porcentaje total de censados</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tBodyEstadisticaPreCensados">
+                       
+                            
+                      
+                    </tbody>
+                </table>
+                </div> <!-- Fin contenedor para mostrar lista de censos -->
+            </div><!-- Fin contenedor general censado -->
+
+        <div id="seccionContacto" class="seccion">
+            <h1>Contacto</h1>
+            <p>Gracias por visitar nuestra página de censos. Esperamos poder ayudarte a realizar el censo y brindarte una experiencia positiva en nuestro sitio. ¡No dudes en contactarte con nosotros!</p>
+        </div>
+
+        <div id="pie"> <!-- Contenedor footer -->
+            <a href="https://www.ort.edu.uy">This web is made by Sebastian Gonzalez & Martin Nuñez | 2023 P1</a>
+        </div> <!-- Fin contenedor footer -->
+    </div> <!-- Fin contenedor general de todo el html -->
+    <script src="JS/codigo.js"></script>
+</body>
+
+</html>
